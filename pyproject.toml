@@ -3,14 +3,31 @@ name = "building-mgmt"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Benjamin Dass",email = "65924137+ben-dass@users.noreply.github.com"}
+    { name = "Benjamin Dass", email = "65924137+ben-dass@users.noreply.github.com" }
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<4.0"
 dependencies = [
+    "django>=5.1.6",
+    "black>=25.1.0", # Code formatter.
+    "python-dotenv>=1.0.1", # Load environment variables.
+    "djangorestframework>=3.15.2",
+    "django-autoslug>=1.9.9", # From (Welcome Benjamin) to (welcome-benjamin).
+    "django-countries>=7.6.1",
+    "django-phonenumber-field>=8.0.0", # PhoneNumber field for model usage.
+    "phonenumbers>=8.13.54", # For parsing, formatting & validating phone numbers.
+    "drf-yasg>=1.21.8", # Auto generates OpenAPI documentation.
+    "pillow>=11.1.0", # Library for opening, manipulating & saving different image file formats.
+    "argon2-cffi>=23.1.0", # Wrapper around Argon2 password hashing algo.
+    "djoser>=2.3.1", # Views & utilities for user auth, registraion & management.
+    "django-taggit>=6.1.0", # Tagging functionality to models.
+    "django-filter>=24.3", # Tools for filtering QuerySets.
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
