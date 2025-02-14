@@ -1,5 +1,3 @@
-from os import getenv
-
 from .base import *
 from .base import BASE_DIR
 
@@ -37,7 +35,19 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
-        }
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "config": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": True,
+        },
     },
     "root": {
         "level": "INFO",

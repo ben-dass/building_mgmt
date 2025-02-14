@@ -50,6 +50,7 @@ create role benadmin with login password '12345';
 
 # Give elevated privileges, allow benadmin to create and manage databases.
 alter role benadmin createdb;
+grant all privileges on database estate to benadmin;
 
 \q
 
