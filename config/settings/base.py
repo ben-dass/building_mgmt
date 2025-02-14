@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-APPS_DIR = BASE_DIR / "apps"
+MODULES_DIR = BASE_DIR / "modules"
 
 env_file = path.join(BASE_DIR, ".env", ".env.dev")
 if path.isfile(env_file):
@@ -31,7 +31,14 @@ THIRD_PARTY_APPS = [
     "django_filters",
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "modules.common",
+    "modules.issues",
+    "modules.posts",
+    "modules.profiles",
+    "modules.ratings",
+    "modules.users",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -50,7 +57,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [str(APPS_DIR / "templates")],
+        "DIRS": [str(MODULES_DIR / "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
