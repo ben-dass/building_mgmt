@@ -61,3 +61,11 @@ CREATE DATABASE estate;
 # Ensure that it exists.
 \l
 ```
+
+## Other Config
+
+### Generating secret key
+
+```bash
+python3 -c "import secrets; print(secrets.token_urlsafe(38))"
+```

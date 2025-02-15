@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 MODULES_DIR = BASE_DIR / "modules"
 
-env_file = path.join(BASE_DIR, ".env", ".env.dev")
+env_file = path.join(BASE_DIR, "env", ".env.dev")
 if path.isfile(env_file):
     load_dotenv(dotenv_path=env_file)
 
