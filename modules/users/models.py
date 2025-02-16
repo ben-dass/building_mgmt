@@ -31,7 +31,8 @@ class User(AbstractUser):
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["username", "first_name", "last_name"]
+    # Dont need to add "username" in REQUIRED_FIELDS because it is already in USERNAME_FIELD. USERNAME_FIELD makes it required.
+    REQUIRED_FIELDS = ["first_name", "last_name", "email"]
 
     objects = UserManager()
 
