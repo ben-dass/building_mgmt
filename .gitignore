@@ -1,8 +1,11 @@
 .venv/
-__pycache__/
 .idea/
 poetry.lock
 .DS_Store
 
 env/*
 !env/.env.example
+
+*.pyc
+*.pyo
+__pycache__/
