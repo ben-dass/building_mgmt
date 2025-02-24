@@ -24,6 +24,7 @@ frontend/!.yarn/patches
 frontend/!.yarn/plugins
 frontend/!.yarn/releases
 frontend/!.yarn/versions
+frontend/package-lock.json 
 
 # testing
 frontend/coverage
