@@ -18,6 +18,13 @@ poetry env info
 poetry env remove <environment-name-as-listed>
 ```
 
+## VENV management
+
+```bash
+python3.13 -m venv .venv
+python3 -m venv .venv
+```
+
 ## Poetry commands
 
 ```bash
@@ -31,41 +38,10 @@ poetry-startapp <app-name>
 poetry-startproject <project-name> <location>
 ```
 
-## Postgres
-
-### Local (MacOS) nstall
-
-```bash
-brew install postgresql
-brew services start postgresql
-brew services stop postgresql
-```
-
-### Configuring
-
-```bash
-psql postgres
-
-create role benadmin with login password '12345';
-
-# Give elevated privileges, allow benadmin to create and manage databases.
-alter role benadmin createdb;
-grant all privileges on database estate to benadmin;
-
-\q
-
-# Login as the new user: benadmin.
-psql postgres -U benadmin
-# Create the database for the project: estate.
-CREATE DATABASE estate;
-# Ensure that it exists.
-\l
-```
-
 ## Other Config
 
 ### Generating secret key
 
 ```bash
-python3 -c "import secrets; print(secrets.token_urlsafe(38))"
+python -c "import secrets; print(secrets.token_urlsafe(38))"
 ```
