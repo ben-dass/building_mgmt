@@ -110,13 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
-
 SITE_ID = 1
 
 STATIC_URL = "/static/"
@@ -168,7 +164,7 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    "SIGNING_KEY": getenv("SIGNING_KEY"),
+    "SIGNING_KEY": getenv("JWT_SIGNING_KEY"),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
