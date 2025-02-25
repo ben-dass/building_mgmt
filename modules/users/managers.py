@@ -37,6 +37,7 @@ class UserManager(DjangoUserManager):
         # Create and save user
         user = self.model(username=username, email=email, **extra_fields)
         user.password = make_password(password)
+        user.is_active = True  # Because disabling emails and activation urls through email, set is_active to True
         user.save(using=self._db)
         return user
 

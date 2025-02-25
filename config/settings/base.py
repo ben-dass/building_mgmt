@@ -174,18 +174,22 @@ SIMPLE_JWT = {
 
 DJOSER = {
     "USER_ID_FIELD": "id",
-    "LOGIN_FIELD": "email",
+    "LOGIN_FIELD": "username",
     "TOKEN_MODEL": None,
     "USER_CREATE_PASSWORD_RETYPE": True,
-    "SEND_ACTIVATION_EMAIL": True,
-    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
-    "ACTIVATION_URL": "activate/{uid}/{token}",
     "PASSWORD_RESET_CONFIRM_URL": "password-reset/{uid}/{token}",
     "SOCIAL_AUTH_ALLOWED_REDIRECT_URIS": getenv("REDIRECT_URIS", "").split(","),
     "SERIALIZERS": {
         "user_create": "modules.users.serializers.CreateUserSerializer",
     },
+    # Disable DJSOER email.
+    "SEND_ACTIVATION_EMAIL": False,
+    "SEND_CONFIRMATION_EMAIL": False,  # Disable confirmation emails for account activation
+    "SEND_PASSWORD_RESET_CONFIRMATION": False,  # Disable reset password confirmation emails
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": False,  # Disable email on password change
+    "ACTIVATION_URL": None,  # Remove the activation URL if it's not needed
+    # "ACTIVATION_URL": "activate/{uid}/{token}",
 }
 
 SOCIAL_AUTH_GOOGLE_OATH2_KEY = getenv("GOOGLE_CLIENT_ID")
