@@ -191,15 +191,3 @@ DJOSER = {
     "ACTIVATION_URL": None,  # Remove the activation URL if it's not needed
     # "ACTIVATION_URL": "activate/{uid}/{token}",
 }
-
-SOCIAL_AUTH_GOOGLE_OATH2_KEY = getenv("GOOGLE_CLIENT_ID")
-SOCIAL_AUTH_GOOGLE_OATH2_SECRET = getenv("GOOGLE_CLIENT_SECRET")
-SOCIAL_AUTH_GOOGLE_OATH2_SCOPE = [
-    "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/userinfo.profile",
-    "openid",
-]
-SOCIAL_AUTH_GOOGLE_OATH2_EXTRA_DATA = [
-    "first_name",
-    "last_name",
-]

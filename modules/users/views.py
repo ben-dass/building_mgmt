@@ -139,54 +139,6 @@ class CustomTokenRefreshView(TokenRefreshView):
         return refresh_response
 
 
-# When a user logs in via Google, the authentication process follows these steps:
-# 1. Frontend sends the Google OAuth token here (via POST) after user logs in with their Google account.
-# 2. The backend (ProviderAuthView.post) validates the OAuth token using the following:
-#    - SOCIAL_AUTH_GOOGLE_OATH2_KEY
-#    - SOCIAL_AUTH_GOOGLE_OATH2_SECRET
-# 3. Once token is validated, it retrieves the user's information from Google (email, name, etc.) and creates/updates a user in the Django database.
-# 4. The backend will then generate an access and refresh token, storing them in secure cookies.
-class CustomProviderAuthView(ProviderAuthView):
-
-    def post(self, request: Request, *args, **kwargs) -> Response:
-
-        #  Calls the original ProviderAuthView.post method that:
-        #  - Gets the OAuth token from the Frontend.
-        #  - Validates the Google OAuth token.
-        #  - Retrieve user information from Google.
-        #  - Creates/updates a user in the Django database.
-        #  - Generates access & refresh tokens.
-        provider_response = super().post(request, *args, **kwargs)
-
-        # If the login is successful.
-        if provider_response.status_code == status.HTTP_201_CREATED:
-            access_token = provider_response.data.get("access")
-            refresh_token = provider_response.data.get("refresh")
-
-            if access_token and refresh_token:
-                set_auth_cookies(
-                    provider_response,
-                    access_token=access_token,
-                    refresh_token=refresh_token,
-                )
-
-                #  Remove the tokens from the JSON response to prevent localStorage storing.
-                provider_response.data.pop("access", None)
-                provider_response.data.pop("refresh", None)
-
-                provider_response.data["message"] = "Login successful."
-
-            else:
-                provider_response.data["message"] = (
-                    "Access or refresh token not found in provider response."
-                )
-                logger.error(
-                    "Access token or refresh token not found in provider response data."
-                )
-
-        return provider_response
-
-
 class LogoutView(APIView):
     def post(self, request: Request, *args, **kwargs):
         response = Response(status=status.HTTP_204_NO_CONTENT)
