@@ -4,6 +4,8 @@ Tenant & Request Management.
 
 ## First Steps
 
+1. Install dependencies.
+
 ```bash
 brew install pipx
 pipx install poetry
@@ -16,6 +18,35 @@ poetry install
 poetry env list
 poetry env info
 poetry env remove <environment-name-as-listed>
+```
+
+2. Enter `.env.dev` variables.
+3. Build database.
+
+```bash
+make build
+make up
+
+# Ensure docker <-> db is set up correctly by being able to login.
+make psql
+\q
+```
+
+4. Run migrations & create a superuser.
+
+```bash
+# Migrations.
+poetry-makemigrations
+poetry-migrate
+
+# Create superuser.
+poetry-createsuperuser
+```
+
+5. Success! You should be able to runserver.
+
+```bash
+poetry-runserver
 ```
 
 ## VENV management
